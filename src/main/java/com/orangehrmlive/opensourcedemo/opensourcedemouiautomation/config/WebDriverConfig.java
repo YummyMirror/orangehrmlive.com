@@ -14,14 +14,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
-import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
-
 @Lazy
 @Configuration
 public class WebDriverConfig {
     @Lazy
     @Bean
-    @Scope(SCOPE_PROTOTYPE)
+    @Scope("browser")
     @ConditionalOnProperty(name = "browser", havingValue = "chrome")
     @ConditionalOnMissingBean
     public WebDriver chromeDriver() {
@@ -33,7 +31,7 @@ public class WebDriverConfig {
 
     @Lazy
     @Bean
-    @Scope(SCOPE_PROTOTYPE)
+    @Scope("browser")
     @ConditionalOnProperty(name = "browser", havingValue = "edge")
     public WebDriver edgeDriver() {
         WebDriverManager.edgedriver().setup();
@@ -44,7 +42,7 @@ public class WebDriverConfig {
 
     @Lazy
     @Bean
-    @Scope(SCOPE_PROTOTYPE)
+    @Scope("browser")
     @ConditionalOnProperty(name = "browser", havingValue = "ie")
     public WebDriver internetExplorerDriver() {
         WebDriverManager.iedriver().setup();
