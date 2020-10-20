@@ -1,14 +1,11 @@
 package com.orangehrmlive.scope;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import com.orangehrmlive.annotation.LazyBean;
+import com.orangehrmlive.annotation.LazyConfiguration;
 
-@Lazy
-@Configuration
+@LazyConfiguration
 public class BrowserScopeConfig {
-    @Lazy
-    @Bean
+    @LazyBean
     public static BrowserScopePostProcessor browserScopePostProcessor() {
         return new BrowserScopePostProcessor();
     }

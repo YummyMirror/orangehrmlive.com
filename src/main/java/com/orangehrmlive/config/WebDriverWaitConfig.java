@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @LazyConfiguration
 public class WebDriverWaitConfig {
-    @Value("${timeout:30}")
+    @Value("${driver.timeout:30}")
     private long timeout;
 
     @LazyBean
