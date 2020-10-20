@@ -1,19 +1,22 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation;
+package com.orangehrmlive.annotation;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Lazy
-@Configuration
+@Bean
+@Scope("browser")
 @Documented
-@Target(TYPE)
+@Target({TYPE, METHOD})
 @Retention(RUNTIME)
-public @interface LazyConfiguration {
+public @interface ThreadScopeBean {
 }

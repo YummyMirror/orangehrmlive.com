@@ -1,6 +1,6 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.service;
+package com.orangehrmlive.service;
 
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.base.BasePage;
+import com.orangehrmlive.base.BasePage;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

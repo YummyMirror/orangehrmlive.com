@@ -1,7 +1,7 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.config;
+package com.orangehrmlive.config;
 
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.LazyBean;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.LazyConfiguration;
+import com.orangehrmlive.annotation.LazyBean;
+import com.orangehrmlive.annotation.LazyConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;

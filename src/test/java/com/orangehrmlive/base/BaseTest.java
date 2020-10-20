@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.base;
+package com.orangehrmlive.base;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

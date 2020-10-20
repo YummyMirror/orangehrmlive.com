@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.model;
+package com.orangehrmlive.model;
 
 import lombok.Getter;
 import lombok.Setter;

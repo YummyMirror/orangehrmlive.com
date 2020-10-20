@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation;
+package com.orangehrmlive.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

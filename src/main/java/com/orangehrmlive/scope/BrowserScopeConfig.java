@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.scope;
+package com.orangehrmlive.scope;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

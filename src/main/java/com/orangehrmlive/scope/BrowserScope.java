@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.scope;
+package com.orangehrmlive.scope;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.ObjectFactory;

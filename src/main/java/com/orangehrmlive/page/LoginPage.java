@@ -1,8 +1,8 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.page;
+package com.orangehrmlive.page;
 
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.Page;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.base.BasePage;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.model.User;
+import com.orangehrmlive.annotation.Page;
+import com.orangehrmlive.base.BasePage;
+import com.orangehrmlive.model.User;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

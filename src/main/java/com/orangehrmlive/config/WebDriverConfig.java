@@ -1,9 +1,9 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.config;
+package com.orangehrmlive.config;
 
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.LazyAutowired;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.LazyConfiguration;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation.ThreadScopeBean;
-import com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.application.DriverFactory;
+import com.orangehrmlive.annotation.LazyAutowired;
+import com.orangehrmlive.annotation.LazyConfiguration;
+import com.orangehrmlive.annotation.ThreadScopeBean;
+import com.orangehrmlive.application.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
