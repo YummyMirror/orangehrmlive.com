@@ -1,4 +1,4 @@
-package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.base;
+package com.orangehrmlive.opensourcedemo.opensourcedemouiautomation.annotation;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
