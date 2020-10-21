@@ -1,17 +1,15 @@
 package com.orangehrmlive.service;
 
+import com.orangehrmlive.annotation.LazyService;
 import com.orangehrmlive.base.BasePage;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
-import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
-
-@Lazy
-@Scope(SCOPE_PROTOTYPE)
-@Service
+@LazyService
 public class NavigatorService extends BasePage {
+    @Value("${app.url}")
+    private String applicationUrl;
+
     public void mainPage() {
-        super.open("https://opensource-demo.orangehrmlive.com/");
+        super.open(this.applicationUrl);
     }
 }
