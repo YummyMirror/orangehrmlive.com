@@ -18,7 +18,7 @@ public class NavigationMenu extends BasePage {
     public void open(String... menuItems) {
         assert menuItems != null && menuItems.length > 0;
         List<String> itemsToSelect = arrayToListString(menuItems);
-
+        outOfLoop:
         for (int i = 0; i < getTopMenuItems().size(); i++) {
             WebElement topMenuItem = getTopMenuItems().get(i);
             if (topMenuItem.getText().equalsIgnoreCase(itemsToSelect.get(0))) {
@@ -37,7 +37,7 @@ public class NavigationMenu extends BasePage {
                             WebElement subSubMenuItem = subSubItems2.get(k);
                             if (subSubMenuItem.getText().equalsIgnoreCase(itemsToSelect.get(2))) {
                                 super.click(subSubMenuItem);
-                                break;
+                                break outOfLoop;
                             }
                         }
                     }
