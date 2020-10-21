@@ -4,9 +4,12 @@ import com.orangehrmlive.annotation.LazyAutowired;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
@@ -19,6 +22,9 @@ public class BasePage {
 
     @LazyAutowired
     protected WebDriverWait wait;
+
+    @LazyAutowired
+    protected Actions actions;
 
     protected void open(String url) {
         if (url != null && !url.isEmpty()) {
@@ -64,7 +70,21 @@ public class BasePage {
         this.wait.until(elementToBeClickable(element)).click();
     }
 
+    protected WebElement find(By locator) {
+        return this.driver.findElement(locator);
+    }
+
+    protected List<WebElement> findAll(By locator) {
+        return this.driver.findElements(locator);
+    }
+
     protected boolean isElementPresent(By locator) {
         return this.driver.findElements(locator).size() > 0;
+    }
+
+    protected void moveToElement(WebElement element) {
+        this.actions.moveToElement(element)
+                    .build()
+                    .perform();
     }
 }
