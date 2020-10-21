@@ -12,24 +12,31 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
+
 @Page
 public class JobTitleViewPage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(JobTitleViewPage.class);
 
     public Set<JobTitle> getJobTitles() {
-        Set<JobTitle> jobTitles = getAllRows().stream()
-                                              .map(row -> {
-                                                  List<WebElement> cells = row.findElements(By.xpath("./td"));
-                                                  return new JobTitle().setId(Integer.parseInt(cells.get(0).findElement(By.xpath("./input")).getAttribute("value")))
-                                                                       .setTitle(cells.get(1).findElement(By.xpath("./a")).getText())
-                                                                       .setDescription(cells.get(2).getText());
-                                              })
-                                              .collect(Collectors.toSet());
+        Set<JobTitle> jobTitles = this.getAllRows().stream()
+                                      .map(row -> {
+                                          List<WebElement> cells = row.findElements(By.xpath("./td"));
+                                          return new JobTitle().setId(Integer.parseInt(cells.get(0).findElement(By.xpath("./input")).getAttribute("value")))
+                                                               .setTitle(cells.get(1).findElement(By.xpath("./a")).getText())
+                                                               .setDescription(cells.get(2).getText());
+                                      })
+                                      .collect(Collectors.toSet());
         logger.info("Collection of Job Titles is retrieved and equals '" + jobTitles.size() + "'");
         return jobTitles;
     }
 
     private List<WebElement> getAllRows() {
-        return findAll(By.xpath("//*[@id = 'resultTable']/tbody/tr"));
+        return super.findAll(By.xpath("//*[@id = 'resultTable']/tbody/tr"));
+    }
+
+    public void clickAddButton() {
+        super.click(By.id("btnAdd"));
+        super.wait.until(urlContains("saveJobTitle"));
     }
 }
