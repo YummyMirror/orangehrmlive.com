@@ -17,9 +17,9 @@ public class SaveJobTitlePage extends BasePage {
         super.input(By.id("jobTitle_note"), jobTitle.getNote());
         super.click(By.id("btnSave"));
         if (isValid) {
-            super.wait.until(urlContains("viewJobTitleList"));
+            super.wait.condition(urlContains("viewJobTitleList"));
         } else {
-            super.wait.until(visibilityOfElementLocated(By.id("btnSave")));
+            super.wait.condition(visibilityOfElementLocated(By.id("btnSave")));
         }
     }
 }

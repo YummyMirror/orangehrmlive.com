@@ -1,11 +1,11 @@
 package com.orangehrmlive.base;
 
 import com.orangehrmlive.annotation.LazyAutowired;
+import com.orangehrmlive.service.WaiterService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +22,7 @@ public class BasePage {
     protected WebDriver driver;
 
     @LazyAutowired
-    protected WebDriverWait wait;
+    protected WaiterService wait;
 
     @LazyAutowired
     protected Actions actions;
@@ -31,7 +31,7 @@ public class BasePage {
         if (url != null && !url.isEmpty()) {
             if (!this.getCurrentUrl().equalsIgnoreCase(url)) {
                 this.driver.navigate().to(url);
-                this.wait.until(urlContains(url));
+                this.wait.condition(urlContains(url));
                 logger.info("URL '" + url + "' is opened");
             } else {
                 logger.info("Current URL '" + this.getCurrentUrl() + "' equals to the requested URL '" + url + "'");
@@ -71,12 +71,12 @@ public class BasePage {
     }
 
     protected void click(By locator) {
-        this.wait.until(elementToBeClickable(locator)).click();
+        this.wait.condition(elementToBeClickable(locator)).click();
         logger.info("Element with locator '" + locator + "' is clicked");
     }
 
     protected void click(WebElement element) {
-        this.wait.until(elementToBeClickable(element)).click();
+        this.wait.condition(elementToBeClickable(element)).click();
     }
 
     protected WebElement find(By locator) {
