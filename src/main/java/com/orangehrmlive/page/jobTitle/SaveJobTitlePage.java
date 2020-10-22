@@ -11,6 +11,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 @Page
 public class SaveJobTitlePage extends BasePage {
     public void populate(JobTitle jobTitle, boolean isValid) {
+        assert jobTitle != null;
         super.input(By.id("jobTitle_jobTitle"), jobTitle.getTitle());
         super.input(By.id("jobTitle_jobDescription"), jobTitle.getDescription());
         super.attach(By.id("jobTitle_jobSpec"), jobTitle.getSpecification());

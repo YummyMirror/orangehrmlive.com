@@ -39,4 +39,11 @@ public class JobTitleViewPage extends BasePage {
         super.click(By.id("btnAdd"));
         super.wait.until(urlContains("saveJobTitle"));
     }
+
+    public void openJobTitle(JobTitle jobTitle) {
+        assert jobTitle != null;
+        super.click(By.xpath("//input[@value = '" + jobTitle.getId() + "']/..//following-sibling::td/a"));
+        super.wait.until(urlContains("saveJobTitle"));
+        super.wait.until(urlContains("jobTitleId=" + jobTitle.getId()));
+    }
 }
