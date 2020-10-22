@@ -1,4 +1,4 @@
-package com.orangehrmlive.application;
+package com.orangehrmlive.config;
 
 import com.orangehrmlive.annotation.LazyService;
 import io.github.bonigarcia.wdm.WebDriverManager;
