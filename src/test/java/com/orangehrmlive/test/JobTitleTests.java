@@ -1,7 +1,9 @@
 package com.orangehrmlive.test;
 
 import com.orangehrmlive.annotation.LazyAutowired;
+import com.orangehrmlive.annotation.Source;
 import com.orangehrmlive.base.BaseTest;
+import com.orangehrmlive.dataProvider.DataProviders;
 import com.orangehrmlive.model.JobTitle;
 import com.orangehrmlive.model.User;
 import com.orangehrmlive.page.LoginPage;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.Comparator;
 import java.util.Set;
 
@@ -50,12 +51,9 @@ public class JobTitleTests extends BaseTest {
         this.navigate.getNavigationMenu().open("Admin", "Job", "Job Titles");
     }
 
-    @Test
-    public void createJobTitleTest() {
-        JobTitle jobTitleForCreate = new JobTitle().setTitle("Test Job Title 4")
-                                                   .setDescription("Test Description")
-                                                   .setSpecification(new File(""));
-
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "getJobTitles")
+    @Source(value = "jobTitles.json")
+    public void createJobTitleTest(JobTitle jobTitleForCreate) {
         Set<JobTitle> jobTitlesBefore = this.jobTitleViewPage.getJobTitles();
         this.jobTitleViewPage.clickAddButton();
         this.saveJobTitlePage.populate(jobTitleForCreate, true);
@@ -73,8 +71,7 @@ public class JobTitleTests extends BaseTest {
     @Test(priority = 1)
     public void updateJobTitleTest() {
         JobTitle jobTitleForUpdate = new JobTitle().setTitle("Test Job Title UPDATED 3")
-                                                   .setDescription("Test Description UPDATED")
-                                                   .setSpecification(new File(""));
+                                                   .setDescription("Test Description UPDATED");
 
         Set<JobTitle> jobTitlesBefore = this.jobTitleViewPage.getJobTitles();
         JobTitle randomJobTitle = jobTitlesBefore.stream().findAny().get();

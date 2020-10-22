@@ -6,8 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.io.File;
-
 @Getter
 @Setter
 @Accessors(chain = true)
@@ -17,15 +15,5 @@ public class JobTitle {
     private Integer id;
     private String title;
     private String description;
-    private String specification;
     private String note;
-
-    public File getSpecification() {
-        return new File(specification);
-    }
-
-    public JobTitle setSpecification(File specification) {
-        this.specification = specification.getPath();
-        return this;
-    }
 }
