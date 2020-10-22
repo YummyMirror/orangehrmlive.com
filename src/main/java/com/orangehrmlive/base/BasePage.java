@@ -3,6 +3,7 @@ package com.orangehrmlive.base;
 import com.orangehrmlive.annotation.LazyAutowired;
 import com.orangehrmlive.service.WaiterService;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -26,6 +27,9 @@ public class BasePage {
 
     @LazyAutowired
     protected Actions actions;
+
+    @LazyAutowired
+    protected JavascriptExecutor js;
 
     protected void open(String url) {
         if (url != null && !url.isEmpty()) {
@@ -95,5 +99,10 @@ public class BasePage {
         this.actions.moveToElement(element)
                     .build()
                     .perform();
+    }
+
+    protected void alert(String text) {
+        assert text != null && !text.isEmpty();
+        this.js.executeScript("alert('" + text + "');");
     }
 }
