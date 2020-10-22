@@ -86,4 +86,15 @@ public class JobTitleTests extends BaseTest {
 
         assertThat("Collections are not equal", jobTitlesBefore, is(equalTo(jobTitlesAfter)));
     }
+
+    @Test(priority = 2)
+    public void deleteJobTitleTest() {
+        Set<JobTitle> jobTitlesBefore = this.jobTitleViewPage.getJobTitles();
+        JobTitle randomJobTitle = jobTitlesBefore.stream().findAny().get();
+        this.jobTitleViewPage.deleteJobTitle(randomJobTitle);
+        Set<JobTitle> jobTitlesAfter = this.jobTitleViewPage.getJobTitles();
+        jobTitlesBefore.remove(randomJobTitle);
+
+        assertThat("Collections are not equal", jobTitlesBefore, is(equalTo(jobTitlesAfter)));
+    }
 }

@@ -1,8 +1,10 @@
 package com.orangehrmlive.page.jobTitle;
 
+import com.orangehrmlive.annotation.LazyAutowired;
 import com.orangehrmlive.annotation.Page;
 import com.orangehrmlive.base.BasePage;
 import com.orangehrmlive.model.JobTitle;
+import com.orangehrmlive.page.element.ConfirmDialog;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -17,6 +19,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 @Page
 public class JobTitleViewPage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(JobTitleViewPage.class);
+
+    @LazyAutowired
+    private ConfirmDialog confirmDialog;
 
     public Set<JobTitle> getJobTitles() {
         Set<JobTitle> jobTitles = this.getAllRows().stream()
@@ -45,5 +50,12 @@ public class JobTitleViewPage extends BasePage {
         super.click(By.xpath("//input[@value = '" + jobTitle.getId() + "']/..//following-sibling::td/a"));
         super.wait.until(urlContains("saveJobTitle"));
         super.wait.until(urlContains("jobTitleId=" + jobTitle.getId()));
+    }
+
+    public void deleteJobTitle(JobTitle jobTitle) {
+        assert jobTitle != null;
+        super.click(By.xpath("//input[@value = '" + jobTitle.getId() + "']"));
+        super.click(By.id("btnDelete"));
+        this.confirmDialog.confirmAction();
     }
 }
