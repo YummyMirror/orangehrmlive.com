@@ -22,10 +22,10 @@ public class LoginPage extends BasePage {
         super.input(PASSWORD_LOCATOR, user.getPassword());
         super.click(LOGIN_BUTTON_LOCATOR);
         if (isValid) {
-            super.wait.until(visibilityOfElementLocated(WELCOME_USERNAME_LOCATOR));
+            super.wait.condition(visibilityOfElementLocated(WELCOME_USERNAME_LOCATOR));
             logger.info("User '" + user.getUsername() + "' is logged in");
         } else {
-            super.wait.until(visibilityOfElementLocated(USERNAME_LOCATOR));
+            super.wait.condition(visibilityOfElementLocated(USERNAME_LOCATOR));
             logger.info("User '" + user.getUsername() + "' is NOT logged in");
         }
     }

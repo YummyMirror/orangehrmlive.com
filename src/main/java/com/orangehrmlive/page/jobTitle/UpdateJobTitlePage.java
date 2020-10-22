@@ -16,7 +16,7 @@ public class UpdateJobTitlePage extends BasePage {
     public void updateJobTitle(JobTitle jobTitle, boolean isValid) {
         assert jobTitle != null;
         super.click(By.id("btnSave"));
-        super.wait.until(attributeToBe(By.id("btnSave"), "value", "Save"));
+        super.wait.condition(attributeToBe(By.id("btnSave"), "value", "Save"));
         this.saveJobTitlePage.populate(jobTitle, isValid);
     }
 }
