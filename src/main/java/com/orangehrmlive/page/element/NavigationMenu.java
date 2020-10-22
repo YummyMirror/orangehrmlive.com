@@ -23,12 +23,14 @@ public class NavigationMenu extends BasePage {
             WebElement topMenuItem = getTopMenuItems().get(i);
             if (topMenuItem.getText().equalsIgnoreCase(itemsToSelect.get(0))) {
                 super.click(topMenuItem);
+                logger.info("'" + itemsToSelect.get(0) + "' menu item is opened");
 
                 for (int j = 0; j < getChildrenOf(getTopMenuItems().get(i)).size(); j++) {
                     WebElement topItem = getTopMenuItems().get(i);
                     WebElement subMenuItem = getChildrenOf(topItem).get(j);
                     if (subMenuItem.getText().equalsIgnoreCase(itemsToSelect.get(1))) {
                         super.click(subMenuItem);
+                        logger.info("'" + itemsToSelect.get(1) + "' sub-menu item is opened");
 
                         for (int k = 0; k < getChildrenOf(getChildrenOf(getTopMenuItems().get(i)).get(j)).size(); k++) {
                             WebElement topItem2 = getTopMenuItems().get(i);
@@ -37,6 +39,7 @@ public class NavigationMenu extends BasePage {
                             WebElement subSubMenuItem = subSubItems2.get(k);
                             if (subSubMenuItem.getText().equalsIgnoreCase(itemsToSelect.get(2))) {
                                 super.click(subSubMenuItem);
+                                logger.info("'" + itemsToSelect.get(2) + "' sub-sub-menu item is opened");
                                 break outOfLoop;
                             }
                         }

@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginTest() {
+    public void validLoginTest() {
         this.loginPage.loginAs(
                 new User().setUsername(this.username)
                           .setPassword(this.password),

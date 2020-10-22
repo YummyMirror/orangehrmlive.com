@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -46,7 +47,7 @@ public class BasePage {
 
     protected void input(By locator, String value) {
         if (value != null && !value.isEmpty()) {
-            WebElement element = this.driver.findElement(locator);
+            WebElement element = this.find(locator);
             String currentValue = element.getAttribute("value");
             if (!currentValue.equalsIgnoreCase(value)) {
                 element.click();
@@ -58,6 +59,14 @@ public class BasePage {
             }
         } else {
             logger.error("Value '" + value + "' is either NULL or EMPTY");
+        }
+    }
+
+    protected void attach(By locator, File file) {
+        if (file != null && !file.getPath().isEmpty()) {
+            this.find(locator).sendKeys(file.getAbsolutePath());
+        } else {
+            logger.error("File '" + file + "' is either NULL or EMPTY");
         }
     }
 
