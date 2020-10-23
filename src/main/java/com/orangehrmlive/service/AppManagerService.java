@@ -6,8 +6,12 @@ import com.orangehrmlive.page.LoginPage;
 import com.orangehrmlive.page.jobTitle.JobTitleViewPage;
 import com.orangehrmlive.page.jobTitle.SaveJobTitlePage;
 import com.orangehrmlive.page.jobTitle.UpdateJobTitlePage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.springframework.context.ApplicationContext;
+
+import java.io.File;
 
 @LazyService
 public class AppManagerService {
@@ -30,7 +34,15 @@ public class AppManagerService {
     private UpdateJobTitlePage updateJobTitlePage;
 
     public void stop() {
-        this.context.getBean(WebDriver.class).quit();
+        this.getDriver().quit();
+    }
+
+    public File takeScreenshotAsFile() {
+        return ((TakesScreenshot) this.getDriver()).getScreenshotAs(OutputType.FILE);
+    }
+
+    private WebDriver getDriver() {
+        return this.context.getBean(WebDriver.class);
     }
 
     public NavigatorService navigate() {
