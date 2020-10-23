@@ -30,4 +30,10 @@ public class WebDriverConfig {
     public WebDriver internetExplorerDriver() {
         return this.driverFactory.create("ie");
     }
+
+    @ThreadScopeBean
+    @ConditionalOnMissingBean
+    public WebDriver chromeDriverInMissingBean() {
+        return this.driverFactory.create("chrome");
+    }
 }
