@@ -4,36 +4,39 @@ import com.orangehrmlive.annotation.LazyAutowired;
 import com.orangehrmlive.annotation.LazyConfiguration;
 import com.orangehrmlive.annotation.ThreadScopeBean;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @LazyConfiguration
 public class WebDriverConfig {
+    @Value("${fullscreen}")
+    private Boolean fullscreen;
+
     @LazyAutowired
     private DriverFactory driverFactory;
 
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "chrome")
-    @ConditionalOnMissingBean
     public WebDriver chromeDriver() {
-        return this.driverFactory.create("chrome");
+        return this.driverFactory.create("chrome", fullscreen);
     }
 
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "edge")
     public WebDriver edgeDriver() {
-        return this.driverFactory.create("edge");
+        return this.driverFactory.create("edge", fullscreen);
     }
 
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "ie")
     public WebDriver internetExplorerDriver() {
-        return this.driverFactory.create("ie");
+        return this.driverFactory.create("ie", fullscreen);
     }
 
     @ThreadScopeBean
     @ConditionalOnMissingBean
     public WebDriver chromeDriverInMissingBean() {
-        return this.driverFactory.create("chrome");
+        return this.driverFactory.create("chrome", fullscreen);
     }
 }
