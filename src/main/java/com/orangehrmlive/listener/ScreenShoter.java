@@ -1,6 +1,6 @@
 package com.orangehrmlive.listener;
 
-import com.orangehrmlive.service.AppManagerService;
+import com.orangehrmlive.service.impl.AppManagerServiceImpl;
 import org.apache.commons.io.FileUtils;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -22,7 +22,7 @@ public class ScreenShoter implements ITestListener {
     }
 
     private void saveScreenshot(ITestResult result) {
-        AppManagerService app = (AppManagerService) result.getTestContext().getAttribute("app");
+        AppManagerServiceImpl app = (AppManagerServiceImpl) result.getTestContext().getAttribute("app");
         try {
             FileUtils.copyFile(app.takeScreenshotAsFile(), new File(SCREENSHOT_PATH + result.getMethod().getMethodName() +
                     "_" + System.currentTimeMillis() + ".jpg"));
