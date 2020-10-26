@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.orangehrmlive.locator.jobTitle.JobTitleViewPageLocators.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
 @Page
@@ -39,12 +40,12 @@ public class JobTitleViewPageImpl extends BasePage implements JobTitleViewPage {
     }
 
     private List<WebElement> getAllRows() {
-        return super.findAll(By.xpath("//*[@id = 'resultTable']/tbody/tr"));
+        return super.findAll(TABLE_ROWS.locator());
     }
 
     @Override
     public void clickAddButton() {
-        super.click(By.id("btnAdd"));
+        super.click(ADD_BUTTON.locator());
         super.wait.condition(urlContains("saveJobTitle"));
     }
 
@@ -60,7 +61,7 @@ public class JobTitleViewPageImpl extends BasePage implements JobTitleViewPage {
     public void deleteJobTitle(JobTitle jobTitle) {
         assert jobTitle != null;
         super.click(By.xpath("//input[@value = '" + jobTitle.getId() + "']"));
-        super.click(By.id("btnDelete"));
+        super.click(DELETE_BUTTON.locator());
         this.confirmDialog.confirmAction();
     }
 }

@@ -3,7 +3,6 @@ package com.orangehrmlive.page.element.impl;
 import com.orangehrmlive.annotation.PageFragment;
 import com.orangehrmlive.base.BasePage;
 import com.orangehrmlive.page.element.NavigationMenu;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.orangehrmlive.locator.element.NavigatorMenuLocators.CHILDREN_MENU_ITEMS;
+import static com.orangehrmlive.locator.element.NavigatorMenuLocators.TOP_MENU_ITEMS;
 
 @PageFragment
 public class NavigationMenuImpl extends BasePage implements NavigationMenu {
@@ -58,10 +60,10 @@ public class NavigationMenuImpl extends BasePage implements NavigationMenu {
     }
 
     private List<WebElement> getTopMenuItems() {
-        return findAll(By.xpath("//li[contains(@class, 'main-menu-first-level-list-item')]/a"));
+        return findAll(TOP_MENU_ITEMS.locator());
     }
 
     private List<WebElement> getChildrenOf(WebElement parent) {
-        return parent.findElements(By.xpath(".//following-sibling::ul/li/a"));
+        return parent.findElements(CHILDREN_MENU_ITEMS.locator());
     }
 }

@@ -49,7 +49,7 @@ public class JobTitleTests extends BaseTest {
 
     @Test(priority = 1)
     public void updateJobTitleTest() {
-        JobTitle jobTitleForUpdate = new JobTitle().setTitle("Test Job Title UPDATED 3")
+        JobTitle jobTitleForUpdate = new JobTitle().setTitle("Test Job Title UPDATED 4")
                                                    .setDescription("Test Description UPDATED");
 
         Set<JobTitle> jobTitlesBefore = this.app.jobTitleViewPage().getJobTitles();
