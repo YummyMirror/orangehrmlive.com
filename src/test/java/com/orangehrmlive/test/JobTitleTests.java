@@ -33,10 +33,10 @@ public class JobTitleTests extends BaseTest {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "getJobTitles")
     @Source(value = "jobTitles.json")
     public void createJobTitleTest(JobTitle jobTitleForCreate) {
-        Set<JobTitle> jobTitlesBefore = this.app.jobTitleViewPage().getJobTitles();
-        this.app.jobTitleViewPage().clickAddButton();
-        this.app.saveJobTitlePage().populate(jobTitleForCreate, true);
-        Set<JobTitle> jobTitlesAfter = this.app.jobTitleViewPage().getJobTitles();
+        Set<JobTitle> jobTitlesBefore = super.app.jobTitleViewPage().getJobTitles();
+        super.app.jobTitleViewPage().clickAddButton();
+        super.app.saveJobTitlePage().populate(jobTitleForCreate, true);
+        Set<JobTitle> jobTitlesAfter = super.app.jobTitleViewPage().getJobTitles();
         jobTitlesBefore.add(
                 jobTitleForCreate.setId(jobTitlesAfter.stream()
                                                       .max(Comparator.comparingInt(JobTitle::getId))
@@ -52,11 +52,11 @@ public class JobTitleTests extends BaseTest {
         JobTitle jobTitleForUpdate = new JobTitle().setTitle("Test Job Title UPDATED 4")
                                                    .setDescription("Test Description UPDATED");
 
-        Set<JobTitle> jobTitlesBefore = this.app.jobTitleViewPage().getJobTitles();
+        Set<JobTitle> jobTitlesBefore = super.app.jobTitleViewPage().getJobTitles();
         JobTitle randomJobTitle = jobTitlesBefore.stream().findAny().get();
-        this.app.jobTitleViewPage().openJobTitle(randomJobTitle);
+        super.app.jobTitleViewPage().openJobTitle(randomJobTitle);
         this.app.updateJobTitlePage().updateJobTitle(jobTitleForUpdate.setId(randomJobTitle.getId()), true);
-        Set<JobTitle> jobTitlesAfter = this.app.jobTitleViewPage().getJobTitles();
+        Set<JobTitle> jobTitlesAfter = super.app.jobTitleViewPage().getJobTitles();
         jobTitlesBefore.remove(randomJobTitle);
         jobTitlesBefore.add(jobTitleForUpdate);
 
@@ -65,10 +65,10 @@ public class JobTitleTests extends BaseTest {
 
     @Test(priority = 2)
     public void deleteJobTitleTest() {
-        Set<JobTitle> jobTitlesBefore = this.app.jobTitleViewPage().getJobTitles();
+        Set<JobTitle> jobTitlesBefore = super.app.jobTitleViewPage().getJobTitles();
         JobTitle randomJobTitle = jobTitlesBefore.stream().findAny().get();
-        this.app.jobTitleViewPage().deleteJobTitle(randomJobTitle);
-        Set<JobTitle> jobTitlesAfter = this.app.jobTitleViewPage().getJobTitles();
+        super.app.jobTitleViewPage().deleteJobTitle(randomJobTitle);
+        Set<JobTitle> jobTitlesAfter = super.app.jobTitleViewPage().getJobTitles();
         jobTitlesBefore.remove(randomJobTitle);
 
         assertThat("Collections are not equal", jobTitlesBefore, is(equalTo(jobTitlesAfter)));

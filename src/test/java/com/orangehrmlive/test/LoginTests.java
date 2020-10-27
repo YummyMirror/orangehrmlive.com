@@ -18,17 +18,17 @@ public class LoginTests extends BaseTest {
 
     @BeforeClass(alwaysRun = true)
     public void openSite() {
-        this.app.navigate().mainPage();
+        super.app.navigate().mainPage();
     }
 
     @Test
     public void validLoginTest() {
-        this.app.loginPage().loginAs(
+        super.app.loginPage().loginAs(
                 new User().setUsername(this.username)
                           .setPassword(this.password),
                 true
         );
 
-        assertThat("User is NOT logged in", this.app.loginPage().isUserLoggedIn(), is(true));
+        assertThat("User is NOT logged in", super.app.loginPage().isUserLoggedIn(), is(true));
     }
 }
