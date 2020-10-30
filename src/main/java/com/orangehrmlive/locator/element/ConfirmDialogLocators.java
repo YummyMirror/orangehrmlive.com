@@ -3,7 +3,7 @@ package com.orangehrmlive.locator.element;
 import org.openqa.selenium.By;
 
 public enum ConfirmDialogLocators {
-    CONFIRM_BUTTON("//*[id = 'dialogDeleteBtn']");
+    CONFIRM_BUTTON("//input[id = 'dialogDeleteBtn']");
 
     String xpath;
 

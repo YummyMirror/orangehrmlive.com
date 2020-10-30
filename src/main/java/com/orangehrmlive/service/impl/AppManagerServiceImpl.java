@@ -6,6 +6,8 @@ import com.orangehrmlive.page.jobTitle.JobTitleViewPage;
 import com.orangehrmlive.page.jobTitle.SaveJobTitlePage;
 import com.orangehrmlive.page.jobTitle.UpdateJobTitlePage;
 import com.orangehrmlive.page.login.LoginPage;
+import com.orangehrmlive.page.userManagement.SaveSystemUserPage;
+import com.orangehrmlive.page.userManagement.SystemUserViewPage;
 import com.orangehrmlive.service.AppManagerService;
 import com.orangehrmlive.service.NavigatorService;
 import org.openqa.selenium.OutputType;
@@ -34,6 +36,12 @@ public class AppManagerServiceImpl implements AppManagerService {
 
     @LazyAutowired
     private UpdateJobTitlePage updateJobTitlePage;
+
+    @LazyAutowired
+    private SystemUserViewPage systemUserViewPage;
+
+    @LazyAutowired
+    private SaveSystemUserPage saveSystemUserPage;
 
     @Override
     public void stop() {
@@ -71,5 +79,15 @@ public class AppManagerServiceImpl implements AppManagerService {
     @Override
     public UpdateJobTitlePage updateJobTitlePage() {
         return updateJobTitlePage;
+    }
+
+    @Override
+    public SystemUserViewPage systemUserViewPage() {
+        return systemUserViewPage;
+    }
+
+    @Override
+    public SaveSystemUserPage saveSystemUserPage() {
+        return saveSystemUserPage;
     }
 }

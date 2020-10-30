@@ -34,8 +34,7 @@ public class JobTitleTests extends BaseTest {
     @Source(value = "jobTitles.json")
     public void createJobTitleTest(JobTitle jobTitleForCreate) {
         Set<JobTitle> jobTitlesBefore = super.app.jobTitleViewPage().getJobTitles();
-        super.app.jobTitleViewPage().clickAddButton();
-        super.app.saveJobTitlePage().populate(jobTitleForCreate, true);
+        super.app.saveJobTitlePage().createJobTitle(jobTitleForCreate, true);
         Set<JobTitle> jobTitlesAfter = super.app.jobTitleViewPage().getJobTitles();
         jobTitlesBefore.add(
                 jobTitleForCreate.setId(jobTitlesAfter.stream()
@@ -55,7 +54,7 @@ public class JobTitleTests extends BaseTest {
         Set<JobTitle> jobTitlesBefore = super.app.jobTitleViewPage().getJobTitles();
         JobTitle randomJobTitle = jobTitlesBefore.stream().findAny().get();
         super.app.jobTitleViewPage().openJobTitle(randomJobTitle);
-        this.app.updateJobTitlePage().updateJobTitle(jobTitleForUpdate.setId(randomJobTitle.getId()), true);
+        this.app.updateJobTitlePage().update(jobTitleForUpdate.setId(randomJobTitle.getId()), true);
         Set<JobTitle> jobTitlesAfter = super.app.jobTitleViewPage().getJobTitles();
         jobTitlesBefore.remove(randomJobTitle);
         jobTitlesBefore.add(jobTitleForUpdate);

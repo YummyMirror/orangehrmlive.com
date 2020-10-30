@@ -9,7 +9,9 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @ToString(of = {"username", "password"})
-public class User {
+public class User extends BaseMenuItem {
+    private Integer id;
+    private String employeeName;
     private String username;
     private String password;
 }
