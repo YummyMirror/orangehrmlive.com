@@ -9,9 +9,9 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@ToString(of = {"id", "title"})
-@EqualsAndHashCode(of = {"id", "title"})
-public class JobTitle {
+@ToString(of = {"title"})
+@EqualsAndHashCode(of = {"title"}, callSuper = false)
+public class JobTitle extends BaseMenuItem {
     private Integer id;
     private String title;
     private String description;

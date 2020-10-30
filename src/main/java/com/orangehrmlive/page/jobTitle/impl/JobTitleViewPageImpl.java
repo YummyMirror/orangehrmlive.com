@@ -4,7 +4,7 @@ import com.orangehrmlive.annotation.LazyAutowired;
 import com.orangehrmlive.annotation.Page;
 import com.orangehrmlive.base.BasePage;
 import com.orangehrmlive.model.JobTitle;
-import com.orangehrmlive.page.element.ConfirmDialog;
+import com.orangehrmlive.page.element.navigationItem.NavigationMenuItem;
 import com.orangehrmlive.page.jobTitle.JobTitleViewPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.orangehrmlive.locator.jobTitle.JobTitleViewPageLocators.*;
+import static com.orangehrmlive.locator.jobTitle.JobTitleViewPageLocators.ADD_BUTTON;
+import static com.orangehrmlive.locator.jobTitle.JobTitleViewPageLocators.TABLE_ROWS;
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
 @Page
@@ -23,7 +24,7 @@ public class JobTitleViewPageImpl extends BasePage implements JobTitleViewPage {
     private static final Logger logger = LoggerFactory.getLogger(JobTitleViewPageImpl.class);
 
     @LazyAutowired
-    private ConfirmDialog confirmDialog;
+    private NavigationMenuItem jobTitleComponent;
 
     @Override
     public Set<JobTitle> getJobTitles() {
@@ -59,9 +60,6 @@ public class JobTitleViewPageImpl extends BasePage implements JobTitleViewPage {
 
     @Override
     public void deleteJobTitle(JobTitle jobTitle) {
-        assert jobTitle != null;
-        super.click(By.xpath("//input[@value = '" + jobTitle.getId() + "']"));
-        super.click(DELETE_BUTTON.locator());
-        this.confirmDialog.confirmAction();
+        this.jobTitleComponent.delete(jobTitle);
     }
 }
