@@ -19,7 +19,7 @@ public class WebDriverConfig {
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "chrome")
     public WebDriver chromeDriver() {
-        return this.driverFactory.create("chrome", fullscreen);
+        return this.getChrome();
     }
 
     @ThreadScopeBean
@@ -37,6 +37,10 @@ public class WebDriverConfig {
     @ThreadScopeBean
     @ConditionalOnMissingBean
     public WebDriver chromeDriverInMissingBean() {
+        return this.getChrome();
+    }
+
+    private WebDriver getChrome() {
         return this.driverFactory.create("chrome", fullscreen);
     }
 }
