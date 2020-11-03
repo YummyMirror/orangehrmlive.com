@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Profile;
 
 @LazyConfiguration
+@Profile("local")
 public class WebDriverConfig {
     @Value("${fullscreen}")
     private Boolean fullscreen;
@@ -23,6 +25,16 @@ public class WebDriverConfig {
     }
 
     @ThreadScopeBean
+    @ConditionalOnMissingBean
+    public WebDriver chromeDriverInMissingBean() {
+        return this.getChrome();
+    }
+
+    private WebDriver getChrome() {
+        return this.driverFactory.create("chrome", fullscreen);
+    }
+
+    @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "edge")
     public WebDriver edgeDriver() {
         return this.driverFactory.create("edge", fullscreen);
@@ -32,15 +44,5 @@ public class WebDriverConfig {
     @ConditionalOnProperty(name = "browser", havingValue = "ie")
     public WebDriver internetExplorerDriver() {
         return this.driverFactory.create("ie", fullscreen);
-    }
-
-    @ThreadScopeBean
-    @ConditionalOnMissingBean
-    public WebDriver chromeDriverInMissingBean() {
-        return this.getChrome();
-    }
-
-    private WebDriver getChrome() {
-        return this.driverFactory.create("chrome", fullscreen);
     }
 }
