@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Tests">
+    <test name="Test 1">
+        <classes>
+            <class name="com.orangehrmlive.test.LoginTests"/>
+        </classes>
+    </test>
+</suite>

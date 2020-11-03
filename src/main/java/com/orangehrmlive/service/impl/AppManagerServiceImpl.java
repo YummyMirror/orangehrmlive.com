@@ -13,6 +13,7 @@ import com.orangehrmlive.service.NavigatorService;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.context.ApplicationContext;
 
 import java.io.File;
@@ -55,6 +56,7 @@ public class AppManagerServiceImpl implements AppManagerService {
 
     private WebDriver getDriver() {
         return this.context.getBean(WebDriver.class);
+//        return this.context.getBean(RemoteWebDriver.class);
     }
 
     @Override
